@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+import "protoc-gen-swagger/options/annotations.proto";
+import "google/rpc/status.proto";
+
+package api;
+
+option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
+  info: {
+    title: "Video hub service"
+    version: "1.0"
+    contact: {
+      name: "Kirill"
+      url: "https://github.com/Melenium02"
+      email: "osumelenium@gmail.com"
+    };
+  };
+  schemes: [HTTP,HTTPS]
+  consumes: "application/json"
+  produces: "application/json"
+  responses: {
+    key: "default"
+    value: {
+      description: ""
+      schema: {
+        json_schema: {
+          ref: ".google.rpc.Status"
+        };
+      };
+    };
+  };
+};

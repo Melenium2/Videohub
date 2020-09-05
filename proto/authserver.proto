@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package api;
+
+import "google/api/annotations.proto";
+
+message SignInRequest {
+  string login = 1;
+  string password = 2;
+}
+
+message SignInResponse {
+  string token = 1;
+}
+
+message SignOutRequest {
+  string email = 1;
+  string username = 2;
+  string password = 3;
+  string password_confirmation = 4;
+}
+
+message SignOutResponse {
+  string success = 1;
+}
+
+service AuthService {
+  rpc SignIn(SignInRequest) returns (SignInResponse) {
+    option (google.api.http) = {
+      post: "/auth/signin"
+      body: "*"
+    };
+  }
+  rpc SignOut(SignOutRequest) returns (SignOutResponse) {
+    option (google.api.http) = {
+      post: "/auth/signout"
+      body: "*"
+    };
+  }
+}

@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package api;
+
+import "google/api/annotations.proto";
+import "google/protobuf/struct.proto";
+
+message SimpleRequest {
+  string work = 1;
+  google.protobuf.Struct obj = 2;
+}
+
+message SimpleResponse {
+  google.protobuf.Struct obj = 2;
+}
+
+service SimpleService {
+  rpc DoIt(SimpleRequest) returns (SimpleResponse) {
+    option (google.api.http) = {
+      post: "/try/work"
+      body: "*"
+    };
+  }
+}
